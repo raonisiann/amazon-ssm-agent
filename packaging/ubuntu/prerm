@@ -1,0 +1,10 @@
+echo "Stopping agent"
+if [ $(cat /proc/1/comm) = init ]
+then
+    stop amazon-ssm-agent || true
+elif [ $(cat /proc/1/comm) = systemd ]
+then
+    systemctl stop amazon-ssm-agent
+    systemctl disable amazon-ssm-agent
+    systemctl daemon-reload
+fi

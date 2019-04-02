@@ -1,0 +1,18 @@
+{
+	"schemaVersion": "1.2",
+	"description": "Install or uninstall a component to the latest version or specified version.",
+	"runtimeConfig": {
+		"aws:runPowerShellScript": {
+			"properties": [{
+				"id": "0.aws:runPowerShellScript",
+				"runCommand": [
+	                                "if (!(Test-Path(\"test_uninstalled.txt\"))) {",
+					"cp test_installed.txt test_uninstalled.txt",
+					"exit 3010",
+					"}",
+					"exit 0"
+				]
+			}]
+		}
+	}
+}

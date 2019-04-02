@@ -1,0 +1,35 @@
+# -*-perl-*-
+
+package.Amazon-ssm-agent = {
+    interfaces = (2.3);
+
+    deploy = {
+        generic = true;
+    };
+
+    build-environment = {
+        chroot = basic;
+        network-access = open;
+    };
+
+    build-system = bgo-wrap-make;
+    build-tools = {
+        2.3 = {
+            GoLang = 1.0;
+            BrazilMakeGo = 1.1;
+            RIPStaticConfig = 1.4;
+            Go3p-Github-Vektra-Mockery = 1.x;
+        };
+    };
+
+    # Use runtime-dependencies for when you want to bring in additional
+    # packages when deploying.
+    # Use dependencies instead if you intend for these dependencies to
+    # be exported to other packages that build against you.
+    dependencies = {
+        2.3 = {
+            EC2-Windows-EC2ConfigService = 1.0;
+            Session-manager-agent-binaries = 1.0;
+        };
+    };
+};
